@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #counter{
+            width: 80%;
+            margin: auto;
+        }
+
+        #counter>div>button:hover{
+           background-color: aqua;
+        }
+        #counter>div>button:first-child{
+           width:60px;
+           border-radius: 10px 0px 0px 10px;
+        }
+        #counter>div>button:last-child{
+           width:60px;
+           border-radius: 0px 10px 10px 
+           0px;
+        }
+        #counter>div{
+            display: flex;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="counter"></div>
+</body>
+</html>
+<script>
+    var count=JSON.parse(localStorage.getItem("counter")) || 0;
+    var button_box=document.createElement("div")
+    var btn1=document.createElement("button")
+    var btn2=document.createElement("button")
+    var counter_text=document.createElement("p")
+    counter_text.innerText=count
+    btn1.innerText="-"
+    btn2.innerText="+"
+    btn1.addEventListener("click",function(){
+        deccounter()
+        window.location.reload()
+    })
+    btn2.addEventListener("click",function(){
+        inccounter()
+        window.location.reload()
+    })
+    button_box.append(btn1,counter_text,btn2)
+    document.querySelector("#counter").append(button_box)
+
+// var count=JSON.parse(localStorage.getItem("counter")) || 0;
+    function deccounter(){
+        count--
+        localStorage.setItem("counter",JSON.stringify(count))
+    }
+    function inccounter(){
+        count++
+        localStorage.setItem("counter",JSON.stringify(count))
+    }
+
+</script>
